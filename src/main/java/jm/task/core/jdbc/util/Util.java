@@ -2,10 +2,7 @@ package jm.task.core.jdbc.util;
 
 import jm.task.core.jdbc.model.User;
 import org.hibernate.HibernateException;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.boot.MetadataSources;
-import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
@@ -21,6 +18,11 @@ public class Util {
     public static final String URL = "jdbc:mysql://localhost:3306/mysql";
     public static Connection connection;
     public static Statement statement;
+    private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
+    private static final String HOST = "jdbc:mysql://localhost:3306/mysql";
+    private static final String LOGIN = "root";
+    private static final String PASS = "root";
+    private static SessionFactory sessionFactory = null;
 
     static {
         try {
@@ -39,13 +41,6 @@ public class Util {
             throw new RuntimeException();
         }
     }
-
-    private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
-    private static final String HOST = "jdbc:mysql://localhost:3306/mysql";
-    private static final String LOGIN = "root";
-    private static final String PASS = "root";
-    private static SessionFactory sessionFactory = null;
-
     public static SessionFactory getSessionFactory() {
 
         try {
